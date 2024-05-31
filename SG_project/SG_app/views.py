@@ -5,10 +5,13 @@ import pandas as pd
 from imblearn.under_sampling import RandomUnderSampler
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import train_test_split
+import os
+from django.conf import settings
+
 
 # 데이터 불러오기 및 전처리
-df = pd.read_csv('full_data.csv')
-
+file_path = os.path.join(os.path.dirname(__file__), 'full_data.csv')
+df = pd.read_csv(file_path)
 # 'ever_married'와 'gender'를 이진 변수로 변환
 df['ever_married'] = [0 if i != 'Yes' else 1 for i in df['ever_married']]
 df['gender'] = [0 if i != 'Female' else 1 for i in df['gender']]
@@ -45,7 +48,16 @@ def submit(request):
         avg_glucose_level = request.POST.get('avg_glucose_level')
         bmi = request.POST.get('bmi')
         smoking_status = request.POST.get('smoking_status')
-        
+
+        # 값 콘솔에 출력
+        print(f"나이: {age}")
+        print(f"성별: {gender}")
+        print(f"고혈압 여부: {hypertension}")
+        print(f"심장병 여부: {heart_disease}")
+        print(f"평균 혈당 수치: {avg_glucose_level}")
+        print(f"BMI: {bmi}")
+        print(f"흡연 상태: {smoking_status}")
+
         # 데이터 프레임으로 변환
         user_data = {'age': [age], 'gender': [gender], 'hypertension': [hypertension], 'heart_disease': [heart_disease],
                      'ever_married': [0], 'avg_glucose_level': [avg_glucose_level], 'bmi': [bmi],

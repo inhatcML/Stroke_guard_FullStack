@@ -1,19 +1,79 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Result</title>
+    <title>예측 결과 화면</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f8f8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: #ffe3e3;
+            border-radius: 20px;
+            padding: 20px;
+            text-align: center;
+            width: 300px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .subtitle {
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+        .result-icon {
+            width: 100px;
+            height: 100px;
+            background-color: #ffa4a4;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto 20px auto;
+        }
+        .result-icon img {
+            width: 50%;
+        }
+        .result-text {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+        .button {
+            background-color: #ff8c8c;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+    </style>
 </head>
 <body>
-    <h1>뇌졸중 예측 결과</h1>
-    <p>
-        {% if prediction == 1 %}
-            뇌졸중이 발생할 확률: {{ probability }}%
-        {% else %}
-            뇌졸중이 발생하지 않을 확률: {{ 100 - probability }}%
-        {% endif %}
-    </p>
+    <div class="container">
+        <div class="title">Stroke Guard</div>
+        <div class="subtitle">예측이 완료되었습니다! 결과를 확인해보세요!</div>
+        <div class="result-icon">
+            <img src="/static/images/brain_icon.png" alt="Brain Icon">
+        </div>
+        <div class="result-text">
+            {% if prediction == 1 %}
+                뇌졸중 발생 가능성: <strong>{{ probability }}%</strong><br>
+                추가 조치를 위해 의료 전문가와 상담하세요!
+            {% else %}
+                뇌졸중 발생 가능성: <strong>{{ probability }}%</strong><br>
+                뇌졸중 발생 가능성이 매우 낮습니다.
+            {% endif %}
+        </div>
+        <a href="/SG_app/main" class="button">다시 예측하기</a>
+    </div>
 </body>
 </html>
