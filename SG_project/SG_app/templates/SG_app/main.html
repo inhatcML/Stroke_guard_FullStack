@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stroke Guard</title>
+    <style>
+                body {
+            font-family: Arial, sans-serif;
+            background-color: #f5dcdc;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+        }
+        .title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        .subtitle {
+            margin-top: 10px;
+            margin-bottom: 20px;
+            color: #666;
+        }
+        .form-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #333;
+            font-weight: bold;
+        }
+        .form-group input[type="text"],
+        .form-group input[type="radio"],
+        .form-group input[type="checkbox"] {
+            width: calc(100% - 10px);
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-top: 5px;
+        }
+        .form-group input[type="radio"],
+        .form-group input[type="checkbox"] {
+            width: auto;
+            margin-top: 10px;
+        }
+        .btn {
+            background-color: #e79696;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+        .btn:hover {
+            background-color: #d68585;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="title">Stroke Guard</div>
+        <div class="subtitle">당신의 건강, 지금 뇌졸중 예측으로 확인하세요!</div>
+        <form method="POST" action="/SG_app/submit/"> <!-- action 속성과 method 속성 추가 -->
+            {% csrf_token %} <!-- CSRF 토큰 추가 -->
+            <div class="form-group">
+                <label for="age">나이:</label>
+                <input type="text" id="age" name="age">
+            </div>
+            <div class="form-group">
+                <label>성별:</label>
+                <label><input type="radio" name="gender" value="male"> 남</label>
+                <label><input type="radio" name="gender" value="female"> 여</label>
+            </div>
+            <div class="form-group">
+                <label>고혈압 여부:</label>
+                <label><input type="checkbox" name="hypertension" value="yes"> 예</label>
+                <label><input type="checkbox" name="hypertension" value="no"> 아니오</label>
+            </div>
+            <div class="form-group">
+                <label>심장병 여부:</label>
+                <label><input type="checkbox" name="heart_disease" value="yes"> 예</label>
+                <label><input type="checkbox" name="heart_disease" value="no"> 아니오</label>
+            </div>
+            <div class="form-group">
+                <label for="avg_glucose_level">평균 혈당 수치:</label>
+                <input type="text" id="avg_glucose_level" name="avg_glucose_level">
+            </div>
+            <div class="form-group">
+                <label for="bmi">BMI:</label>
+                <input type="text" id="bmi" name="bmi">
+            </div>
+            <div class="form-group">
+                <label for="smoking_status">흡연 상태:</label>
+                <input type="text" id="smoking_status" name="smoking_status">
+            </div>
+            <button type="submit" class="btn">확인하기</button>
+        </form>
+    </div>
+</body>
+</html>

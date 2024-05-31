@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Result</title>
+</head>
+<body>
+    <h1>뇌졸중 예측 결과</h1>
+    <p>
+        {% if prediction == 1 %}
+            뇌졸중이 발생할 확률: {{ probability }}%
+        {% else %}
+            뇌졸중이 발생하지 않을 확률: {{ 100 - probability }}%
+        {% endif %}
+    </p>
+</body>
+</html>
